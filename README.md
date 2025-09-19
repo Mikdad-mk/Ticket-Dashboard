@@ -1,257 +1,50 @@
 # 🎫 Ticket Dashboard
 
-A modern, responsive ticket management dashboard built with Next.js 15, React 19, and Tailwind CSS. Features a sleek interface for managing support tickets, knowledge base, and real-time chat functionality.
-
-![Ticket Dashboard](https://img.shields.io/badge/Next.js-15.5.3-black?style=for-the-badge&logo=next.js)
-![React](https://img.shields.io/badge/React-19.1.0-blue?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+A modern, responsive ticket management dashboard built with Next.js 15, React 19, and Tailwind CSS.
 
 ## ✨ Features
 
-### 🎯 Core Functionality
-- **📋 Ticket Management**: View and manage support tickets with real-time updates
+- **📋 Ticket Management**: View and manage support tickets
 - **💬 Live Chat**: Integrated chat system with AI reply toggle
-- **📚 Knowledge Base**: Searchable knowledge base with categorized articles
+- **📚 Knowledge Base**: Searchable knowledge base
 - **📱 Mobile-First Design**: Fully responsive across all devices
-- **🔗 Dynamic Links**: Unique URLs for each ticket conversation
-
-### 🎨 UI/UX Features
-- **🌙 Modern Design**: Clean, professional interface with smooth animations
-- **📱 Responsive Layout**: Optimized for mobile, tablet, and desktop
-- **🎯 Touch-Friendly**: Large touch targets for mobile devices
-- **⚡ Fast Performance**: Built with Next.js 15 and Turbopack
-- **♿ Accessibility**: WCAG compliant with proper ARIA labels
-
-### 🔧 Technical Features
-- **⚡ Server-Side Rendering**: Fast initial page loads
-- **🔄 State Management**: React hooks for efficient state handling
-- **📊 Real-time Updates**: Dynamic content updates without page refresh
-- **🔗 URL Synchronization**: Browser tab titles and URLs update with ticket selection
-- **📱 Progressive Web App**: Mobile-optimized experience
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/ticket-dashboard.git
-   cd ticket-dashboard
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
-3. **Start the development server**
+2. **Start development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
-4. **Open your browser**
+3. **Open browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🛠️ Tech Stack
+
+- **Next.js 15** - React framework
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icons
 
 ## 📱 Responsive Design
 
-### Mobile-First Approach
-- **📱 Mobile (< 375px)**: Chat-focused interface with collapsible menu
-- **📱 Small Mobile (375px+)**: Enhanced touch targets and spacing
-- **📱 Large Mobile (425px+)**: Improved layout and typography
-- **💻 Tablet (768px+)**: Multi-panel layout with better spacing
-- **🖥️ Desktop (1024px+)**: Full three-panel layout
-- **🖥️ Large Desktop (1300px+)**: Optimized chat panel visibility
+The dashboard is optimized for all devices:
+- **Mobile**: Chat-focused interface with collapsible menu
+- **Tablet**: Multi-panel layout
+- **Desktop**: Full three-panel layout
 
-### Breakpoint Strategy
-```css
-/* Mobile First Breakpoints */
-min-[375px]  /* Small mobile */
-sm:          /* 640px - Small tablet */
-md:          /* 768px - Tablet */
-lg:          /* 1024px - Desktop */
-xl:          /* 1280px - Large desktop */
-min-[1300px] /* Extra large desktop */
-```
+## 🎯 Key Features
 
-## 🏗️ Project Structure
-
-```
-ticket-dashboard/
-├── src/
-│   └── app/
-│       ├── globals.css          # Global styles and Tailwind config
-│       ├── layout.tsx           # Root layout component
-│       └── page.tsx            # Main dashboard component
-├── public/                     # Static assets
-├── package.json               # Dependencies and scripts
-├── next.config.ts            # Next.js configuration
-├── tailwind.config.js        # Tailwind CSS configuration
-├── tsconfig.json            # TypeScript configuration
-└── README.md               # Project documentation
-```
-
-## 🎯 Key Components
-
-### 📋 Ticket Management
-- **Ticket List**: Scrollable list with pagination
-- **Ticket Details**: Dynamic header with ticket information
-- **Load More**: Progressive loading for large datasets
-- **Search & Filter**: Real-time ticket filtering
-
-### 💬 Chat System
-- **Message Interface**: Clean, modern chat UI
-- **AI Reply Toggle**: Switch between manual and AI responses
-- **Dynamic Links**: Unique URLs for each ticket conversation
-- **Responsive Input**: Mobile-optimized text input
-
-### 📚 Knowledge Base
-- **Article Search**: Real-time search functionality
-- **Categorized Content**: Organized by topics
-- **Load More**: Paginated content loading
-- **Responsive Cards**: Mobile-friendly article display
-
-## 🔧 Configuration
-
-### Environment Variables
-Create a `.env.local` file in the root directory:
-
-```env
-# Optional: Add your environment variables here
-NEXT_PUBLIC_APP_NAME=Ticket Dashboard
-NEXT_PUBLIC_APP_VERSION=1.0.0
-```
-
-### Tailwind CSS
-The project uses Tailwind CSS v4 with custom configurations:
-
-```javascript
-// tailwind.config.js
-module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      // Custom theme extensions
-    },
-  },
-  plugins: [],
-}
-```
-
-## 📊 Performance
-
-### Optimization Features
-- **⚡ Turbopack**: Next.js 15's fast bundler
-- **🔄 Code Splitting**: Automatic route-based splitting
-- **📱 Responsive Images**: Optimized for all screen sizes
-- **🎯 Bundle Analysis**: Built-in performance monitoring
-
-### Performance Metrics
-- **🚀 First Contentful Paint**: < 1.5s
-- **⚡ Largest Contentful Paint**: < 2.5s
-- **🎯 Cumulative Layout Shift**: < 0.1
-- **📱 Mobile Performance**: 90+ Lighthouse score
-
-## 🧪 Testing
-
-### Running Tests
-```bash
-# Run linting
-npm run lint
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-### Code Quality
-- **ESLint**: Configured with Next.js recommended rules
-- **TypeScript**: Strict type checking enabled
-- **Prettier**: Code formatting (if configured)
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically on every push
-
-### Other Platforms
-```bash
-# Build the project
-npm run build
-
-# Start production server
-npm start
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **Push to the branch**: `git push origin feature/amazing-feature`
-5. **Open a Pull Request**
-
-### Development Guidelines
-- Follow the existing code style
-- Add comments for complex logic
-- Test on multiple devices and browsers
-- Ensure responsive design works correctly
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Next.js Team**: For the amazing framework
-- **Tailwind CSS**: For the utility-first CSS framework
-- **Lucide React**: For the beautiful icons
-- **React Team**: For the powerful UI library
-
-## 📞 Support
-
-If you have any questions or need help:
-
-- **📧 Email**: support@ticketdashboard.com
-- **🐛 Issues**: [GitHub Issues](https://github.com/yourusername/ticket-dashboard/issues)
-- **💬 Discussions**: [GitHub Discussions](https://github.com/yourusername/ticket-dashboard/discussions)
-
-## 🔮 Roadmap
-
-### Upcoming Features
-- [ ] **🔐 User Authentication**: Login and user management
-- [ ] **📊 Analytics Dashboard**: Ticket statistics and insights
-- [ ] **🔔 Push Notifications**: Real-time notifications
-- [ ] **🌐 Multi-language Support**: Internationalization
-- [ ] **📱 PWA Features**: Offline support and app installation
-- [ ] **🤖 AI Integration**: Advanced AI-powered responses
-- [ ] **📈 Reporting**: Advanced reporting and analytics
-- [ ] **🔗 API Integration**: Third-party service integrations
+- **Mobile-First**: Responsive design starting from mobile devices
+- **Touch-Friendly**: Optimized for mobile interactions
+- **Modern UI**: Clean, professional interface
 
 ---
 
-<div align="center">
-
-**Built with ❤️ using Next.js, React, and Tailwind CSS**
-
-[⭐ Star this repo](https://github.com/yourusername/ticket-dashboard) | [🐛 Report Bug](https://github.com/yourusername/ticket-dashboard/issues) | [💡 Request Feature](https://github.com/yourusername/ticket-dashboard/issues)
-
-</div>
+using Next.js, React, and Tailwind CSS
