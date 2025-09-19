@@ -50,6 +50,10 @@ export default function Home() {
   // Mobile navigation state
   const [currentPage, setCurrentPage] = useState<'chat' | 'tickets' | 'knowledge'>('tickets');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  
+  // Pagination state
+  const [visibleTickets, setVisibleTickets] = useState(5);
+  const [visibleKbItems, setVisibleKbItems] = useState(5);
   const tickets = [
     { id: "#TC-0004", name: "David Newman", desc: "System Login Failure", time: "10:06 am", unread: 2 },
     { id: "#TC-0001", name: "Emily Johnson", desc: "Request for Additional Storage and mor...", time: "09:46 am", unread: 0, selected: true },
@@ -84,9 +88,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-[100dvh] bg-gray-100">
+    <div className="h-[100dvh] bg-gray-100 overflow-hidden">
       {/* Main Layout Container - Responsive */}
-      <div className="flex h-[100dvh] overflow-hidden">
+      <div className="flex h-full overflow-hidden">
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -98,7 +102,7 @@ export default function Home() {
         {/* Mobile Menu Overlay */}
         {showMobileMenu && (
           <div className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50" onClick={() => setShowMobileMenu(false)}>
-            <div className="absolute top-0 left-0 w-64 h-full bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="absolute top-0 left-0 w-64 h-full bg-white shadow-xl overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <div className="p-4 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-gray-900">Navigation</h2>
@@ -201,78 +205,78 @@ export default function Home() {
               <ChevronsRight className="w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-gray-600" />
             </button>
           </div>
-        </div>
+          </div>
 
         {/* Main Content Area with Integrated Header */}
-        <div className="flex-1 flex flex-col">
-          {/* Header Bar - Ultra Mobile Responsive */}
-          <div className="flex items-center justify-between px-1.5 min-[375px]:px-2.5 sm:px-4 md:px-6 py-2 min-[375px]:py-2.5 sm:py-3 md:py-4 lg:py-4 bg-white border-b border-gray-200">
+        <div className="flex-1 flex flex-col min-h-0">
+          {/* Header Bar - Ultra Mobile Responsive - Sticky */}
+          <div className="flex items-center justify-between px-1 min-[375px]:px-1.5 sm:px-4 md:px-6 py-3 min-[375px]:py-4 sm:py-5 md:py-4 lg:py-4 bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-20">
             {/* Left Section */}
-            <div className="flex items-center gap-1 min-[375px]:gap-1.5 sm:gap-2 md:gap-4 min-w-0 flex-1">
-              <button onClick={() => setCurrentPage('tickets')} className="h-6 w-6 min-[375px]:h-7 min-[375px]:w-7 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
-                <ArrowLeft className="h-3 w-3 min-[375px]:h-3.5 min-[375px]:w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
+            <div className="flex items-center gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-4 min-w-0 flex-1">
+              <button onClick={() => setCurrentPage('tickets')} className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
+                <ArrowLeft className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               <div className="flex flex-col min-w-0 flex-1">
-                <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-[11px] sm:text-sm md:text-sm lg:text-base truncate">#TC-0001</h1>
-                <p className="text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate">Request for Additional Storage and more server</p>
+                <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-xs sm:text-sm md:text-sm lg:text-base truncate">#TC-0001</h1>
+                <p className="text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate">Request for Additional Storage and more server</p>
               </div>
             </div>
             
             {/* Right Section - Actions */}
-            <div className="flex items-center gap-1 min-[375px]:gap-1 sm:gap-1.5 md:gap-2 flex-shrink-0">
+            <div className="flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
               {/* Icon Buttons */}
-              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <Star className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
+              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-8 sm:w-8 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <Star className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
               </button>
-              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <MoreHorizontal className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
+              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-8 sm:w-8 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <MoreHorizontal className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               
               {/* Action Buttons */}
-              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
-                <Phone className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
+              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-8 sm:px-2 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-1 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
+                <Phone className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">Call</span>
               </button>
-              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
-                <Clock className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
+              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-8 sm:px-2 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-1 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
+                <Clock className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">Snooze</span>
               </button>
-              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors">
+              <button className="hidden sm:flex h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-8 sm:px-2 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors">
                 <span className="hidden sm:inline">Close</span>
-                <X className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:hidden" />
+                <X className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 md:hidden" />
               </button>
             </div>
           </div>
 
           {/* Content Area - Mobile First */}
-          <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
+          <div className="flex flex-1 overflow-hidden flex-col lg:flex-row min-h-0">
             {/* Mobile: Show only current page, Desktop: Show all panels */}
             
             {/* Ticket List Panel - Hidden on mobile unless selected */}
-            <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} lg:flex w-full lg:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col`}>
+            <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} lg:flex w-full lg:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col min-h-0 h-full`}>
               {/* Header - Mobile Responsive */}
-              <div className="px-2 min-[375px]:px-3 sm:px-4 md:px-4 py-2 min-[375px]:py-2.5 sm:py-3 border-b border-gray-200 flex items-center justify-between">
+              <div className="px-2 min-[375px]:px-3 sm:px-4 md:px-4 py-2 min-[375px]:py-2.5 sm:py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0 bg-white">
                 <span className="text-xs min-[375px]:text-sm sm:text-sm font-medium text-gray-900">Total ticket 24</span>
                 <button className="h-6 min-[375px]:h-7 sm:h-7 md:h-8 px-1.5 min-[375px]:px-2 sm:px-2 md:px-3 rounded-lg border border-gray-300 text-xs min-[375px]:text-sm sm:text-sm hover:bg-gray-50 transition-colors flex items-center gap-1 min-[375px]:gap-1 text-black">
                   <span>Newest</span>
                   <ChevronDown className="w-2.5 h-2.5 min-[375px]:w-3 min-[375px]:h-3 sm:w-4 sm:h-4 text-gray-500" />
                 </button>
-            </div>
+              </div>
               
               {/* Search - Mobile Responsive */}
-              <div className="p-2 min-[375px]:p-2.5 sm:p-2 md:p-3">
-            <div className="relative">
+              <div className="p-2 min-[375px]:p-2.5 sm:p-2 md:p-3 flex-shrink-0 bg-white border-b border-gray-200">
+                <div className="relative">
                   <input 
                     className="w-full h-7 min-[375px]:h-8 sm:h-8 md:h-10 rounded-md min-[375px]:rounded-lg border border-gray-300 pl-6 min-[375px]:pl-7 sm:pl-8 md:pl-9 pr-2 min-[375px]:pr-2.5 sm:pr-3 text-xs min-[375px]:text-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black" 
                     placeholder="Search" 
                   />
                   <Search className="absolute left-2 min-[375px]:left-2.5 sm:left-2 md:left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 min-[375px]:w-3.5 min-[375px]:h-3.5 sm:w-4 sm:h-4 text-gray-400" />
                 </div>
-              </div>
+                      </div>
               
-              {/* Ticket List */}
-              <div className="flex-1 overflow-y-auto scrollbar-hide">
-                {tickets.map((ticket, idx) => (
+              {/* Ticket List - Scrollable Content */}
+              <div className="flex-1 overflow-y-auto scrollbar-hide min-h-0">
+                {tickets.slice(0, visibleTickets).map((ticket, idx) => (
                   <div 
                     key={idx} 
                     onClick={() => setCurrentPage('chat')}
@@ -282,12 +286,12 @@ export default function Home() {
                   >
                     <div className="h-6 w-6 min-[375px]:h-7 min-[375px]:w-7 sm:h-7 sm:w-7 md:h-9 md:w-9 rounded-md min-[375px]:rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <Ticket className="w-3 h-3 min-[375px]:w-3.5 min-[375px]:h-3.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-gray-500" />
-              </div>
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs min-[375px]:text-sm sm:text-xs text-gray-500 truncate">{ticket.id}</div>
-                      <div className="text-xs min-[375px]:text-sm sm:text-xs md:text-sm font-medium text-gray-900 truncate">{ticket.name}</div>
-                      <div className="text-xs min-[375px]:text-sm sm:text-xs text-gray-500 truncate">{ticket.desc}</div>
-                </div>
+                      <div className="text-xs min-[375px]:text-sm sm:text-xs md:text-sm font-medium text-gray-900 truncate" title={ticket.name}>{ticket.name}</div>
+                      <div className="text-xs min-[375px]:text-sm sm:text-xs text-gray-500 truncate" title={ticket.desc}>{ticket.desc}</div>
+                    </div>
                     <div className="text-[8px] min-[375px]:text-[9px] sm:text-xs text-gray-500 flex flex-col items-end gap-0.5 min-[375px]:gap-0.5 sm:gap-1 flex-shrink-0">
                       <div className="whitespace-nowrap">{ticket.time}</div>
                       {ticket.unread > 0 && (
@@ -295,14 +299,26 @@ export default function Home() {
                           {ticket.unread}
                         </span>
                       )}
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Load More Button for Tickets */}
+                {visibleTickets < tickets.length && (
+                  <div className="px-2 min-[375px]:px-2.5 sm:px-2 md:px-4 py-3 flex justify-center">
+                    <button 
+                      onClick={() => setVisibleTickets(prev => Math.min(prev + 5, tickets.length))}
+                      className="px-3 py-2 text-xs min-[375px]:text-sm sm:text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      Load More ({tickets.length - visibleTickets} remaining)
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
-                ))}
-          </div>
-        </div>
 
         {/* Chat Panel - Mobile First */}
-        <div className={`${currentPage === 'chat' ? 'flex' : 'hidden'} lg:flex flex-1 bg-gray-50 flex-col relative`}>
+        <div className={`${currentPage === 'chat' ? 'flex' : 'hidden'} lg:flex flex-1 bg-gray-50 flex-col relative min-h-0`}>
           {/* Chat Messages - Ultra Mobile Scrollable area */}
           <div className="flex-1 overflow-y-auto p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 space-y-2 min-[375px]:space-y-2.5 sm:space-y-3 md:space-y-4 pb-16 min-[375px]:pb-20 sm:pb-24 md:pb-32 scrollbar-hide [padding-bottom:calc(theme(spacing.16)+env(safe-area-inset-bottom))]">
             {messages.map((message, idx) => {
@@ -417,9 +433,9 @@ export default function Home() {
         </div>
 
         {/* Knowledge Base Panel - Mobile First */}
-        <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} xl:flex w-full xl:w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col`}>
+        <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} xl:flex w-full xl:w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col min-h-0 h-full`}>
           {/* Header */}
-          <div className="px-3 xl:px-4 2xl:px-5 py-3 xl:py-3 2xl:py-4 border-b border-gray-200">
+          <div className="px-3 xl:px-4 2xl:px-5 py-3 xl:py-3 2xl:py-4 border-b border-gray-200 flex-shrink-0 bg-white">
             <div className="text-sm xl:text-base 2xl:text-[18px] font-semibold text-gray-900 mb-2 xl:mb-3">Knowledge base</div>
             <div className="flex items-center gap-1.5 xl:gap-2">
               <div className="relative flex-1">
@@ -439,21 +455,21 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Knowledge Base Items */}
-          <div className="flex-1 overflow-y-auto px-3 xl:px-3 2xl:px-4 scrollbar-hide">
-            {kbItems.map((item, idx) => (
+          {/* Knowledge Base Items - Scrollable Content */}
+          <div className="flex-1 overflow-y-auto px-3 xl:px-3 2xl:px-4 scrollbar-hide min-h-0">
+            {kbItems.slice(0, visibleKbItems).map((item, idx) => (
               <div key={idx} className="py-3 xl:py-3 2xl:py-4 flex items-start gap-2 xl:gap-2 2xl:gap-3 border-b border-gray-100">
                 <div className="h-8 w-8 xl:h-10 xl:w-10 2xl:h-12 2xl:w-12 rounded-lg xl:rounded-xl 2xl:rounded-2xl bg-gradient-to-br from-pink-50 to-white border border-pink-200 grid place-items-center text-sm xl:text-lg 2xl:text-xl flex-shrink-0">
                   {item.icon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-1 xl:gap-2">
-                    <div className="font-semibold text-xs xl:text-sm 2xl:text-[15px] text-gray-900 truncate">{item.title}</div>
+                    <div className="font-semibold text-xs xl:text-sm 2xl:text-[15px] text-gray-900 truncate" title={item.title}>{item.title}</div>
                     <button className="h-6 w-6 xl:h-7 xl:w-7 2xl:h-8 2xl:w-8 grid place-items-center rounded-md hover:bg-gray-100 flex-shrink-0">
                       <MoreHorizontal className="w-2.5 h-2.5 xl:w-3 xl:h-3 2xl:w-4 2xl:h-4 text-gray-600" />
                     </button>
                   </div>
-                  <div className="text-xs xl:text-xs 2xl:text-sm text-gray-600 mt-1 xl:mt-1 leading-tight xl:leading-4 2xl:leading-5">{item.desc}</div>
+                  <div className="text-xs xl:text-xs 2xl:text-sm text-gray-600 mt-1 xl:mt-1 leading-tight xl:leading-4 2xl:leading-5 line-clamp-2" title={item.desc}>{item.desc}</div>
                   <div className="flex items-center gap-1 xl:gap-2 2xl:gap-3 mt-1 xl:mt-2">
                     <span className="text-[8px] xl:text-[10px] 2xl:text-[11px] px-1 xl:px-1.5 2xl:px-2 py-0.5 xl:py-0.5 2xl:py-1 rounded-md bg-gray-100 text-gray-800">{item.type}</span>
                     <span className="text-[8px] xl:text-[10px] 2xl:text-[11px] text-gray-500">Last Edited {item.edited}</span>
@@ -461,6 +477,18 @@ export default function Home() {
                 </div>
               </div>
             ))}
+            
+            {/* Load More Button for Knowledge Base */}
+            {visibleKbItems < kbItems.length && (
+              <div className="py-3 xl:py-3 2xl:py-4 flex justify-center">
+                <button 
+                  onClick={() => setVisibleKbItems(prev => Math.min(prev + 5, kbItems.length))}
+                  className="px-4 py-2 text-xs xl:text-sm 2xl:text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Load More ({kbItems.length - visibleKbItems} remaining)
+                </button>
+              </div>
+            )}
           </div>
         </div>
           </div>
