@@ -21,6 +21,12 @@ import {
   SlidersHorizontal,
   Folder,
   Hash,
+  Clock,
+  Star,
+  Smile,
+  Mic,
+  ChevronDown,
+  Ticket,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -60,26 +66,40 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Top Header Bar - Exact match to image */}
-      <div className="h-14 bg-white border-b border-gray-200 flex items-center px-4">
-        <button className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-          <ArrowLeft className="w-4 h-4 text-gray-600" />
-        </button>
-        <div className="ml-3 text-sm text-gray-700 font-medium truncate">
-          #TC-0001 Request for Additional Storage and more server
+      {/* Top Header Bar - Updated to match SupportHeader design */}
+      <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200 h-14">
+        <div className="flex items-center gap-4">
+          <button className="h-8 w-8 rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+            <ArrowLeft className="h-4 w-4 text-gray-600" />
+          </button>
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="inline-flex items-center justify-center h-6 w-6 rounded bg-blue-600 text-white text-xs font-medium">1</span>
+            <div className="truncate">
+              <h1 className="font-semibold text-gray-900 text-sm">#TC-0001</h1>
+              <p className="text-xs text-gray-500 truncate">Request for Additional Storage and more server</p>
+            </div>
+          </div>
         </div>
-        <div className="ml-auto flex items-center gap-2">
-          <button className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <MoreHorizontal className="w-4 h-4 text-gray-600" />
+        <div className="flex items-center gap-2">
+          <button className="h-8 w-8 rounded-md hover:bg-gray-100 flex items-center justify-center transition-colors">
+            <Star className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <Phone className="w-4 h-4 text-gray-600" />
+          <button className="h-8 w-8 rounded-md hover:bg-gray-100 flex items-center justify-center transition-colors">
+            <MoreHorizontal className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <Bell className="w-4 h-4 text-gray-600" />
+          <button className="h-8 w-8 rounded-md hover:bg-gray-100 flex items-center justify-center transition-colors">
+            <Settings className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-            <X className="w-4 h-4 text-gray-600" />
+          <button className="h-8 px-3 rounded-md border border-gray-300 text-sm flex items-center gap-2 hover:bg-gray-50 text-black transition-colors">
+            <Phone className="h-4 w-4" />
+            <span>Call</span>
+          </button>
+          <button className="h-8 px-3 rounded-md border border-gray-300 text-sm flex items-center gap-2 hover:bg-gray-50 text-black transition-colors">
+            <Clock className="h-4 w-4" />
+            <span>Snooze</span>
+          </button>
+          <button className="h-8 px-3 rounded-md bg-orange-500 text-white text-sm hover:bg-orange-600 transition-colors">
+            Close
           </button>
         </div>
       </div>
@@ -140,7 +160,7 @@ export default function Home() {
           <div className="p-3">
             <div className="relative">
               <input 
-                className="w-full h-10 rounded-lg border border-gray-300 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                className="w-full h-10 rounded-lg border border-gray-300 pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black" 
                 placeholder="Search" 
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -157,7 +177,7 @@ export default function Home() {
                 }`}
               >
                 <div className="h-9 w-9 rounded-lg bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-500 text-lg font-bold">#</span>
+                  <Ticket className="w-4 h-4 text-gray-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs text-gray-500">{ticket.id}</div>
@@ -249,102 +269,112 @@ export default function Home() {
             })}
           </div>
 
-          {/* Chat Input - Exact match */}
-          <div className="border-t border-gray-200 p-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <FaWhatsapp className="w-4 h-4 text-green-500" />
-                <span className="text-sm text-green-600 font-medium">Whatsapp</span>
-                <span className="text-xs text-gray-500">From</span>
-                <button className="h-7 px-3 rounded-full border border-gray-300 text-xs hover:bg-gray-50 transition-colors">
-                  CSFikri ▾
-                </button>
-              </div>
-              <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500">
-                <span>Instant reply with AI</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" className="sr-only peer" defaultChecked />
-                  <div className="w-9 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-500 transition-colors">
-                    <span className="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white peer-checked:left-4 transition-all"></span>
+          {/* Chat Input - Redesigned to match screenshot */}
+          <div className="border-t border-gray-200 p-3">
+            <div className="rounded-2xl bg-white border border-gray-200 p-3 relative">
+              {/* Top controls */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <button className="h-8 px-3 rounded-lg border border-gray-300 flex items-center gap-2">
+                    <FaWhatsapp className="w-4 h-4 text-green-500" />
+                    <span className="font-medium">Whatsapp</span>
+                    <ChevronDown className="w-4 h-4 text-gray-500" />
+                  </button>
+                  <div className="flex items-center gap-2 text-gray-500">
+                    <span className="text-sm">from</span>
+                    <button className="h-8 px-3 rounded-lg border border-gray-300 flex items-center gap-2">
+                      <span className="font-semibold">CSFILK</span>
+                      <ChevronDown className="w-4 h-4 text-gray-500" />
+                    </button>
                   </div>
-                </label>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-800">
+                  <span>instant reply with AI</span>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" />
+                    <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-black transition-colors">
+                      <span className="absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-white peer-checked:left-5 transition-all"></span>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
-            
-            <div className="relative">
-              <textarea 
-                className="w-full h-12 rounded-xl border border-gray-300 px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Hi, please check this article for more information https://help.fikristudio.com/hc/en-us/articles/44088388454656-adding-agent-seats-to-your-subscription"
-                defaultValue="Hi, please check this article for more information https://help.fikristudio.com/hc/en-us/articles/44088388454656-adding-agent-seats-to-your-subscription"
-              />
-              <div className="absolute right-2 top-2 flex items-center gap-1">
-                <button className="h-8 w-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
-                  <span className="text-sm font-bold">A</span>
-                </button>
-                <button className="h-8 w-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
-                  <Paperclip className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-8 w-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
-                  <Link className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-8 w-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
-                  <Image className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-8 w-8 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors">
-                  <CalendarIcon className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-8 w-8 flex items-center justify-center bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                  <Send className="w-4 h-4" />
+
+              {/* Message field */}
+              <div className="mt-3">
+                <textarea
+                  className="w-full min-h-[36px] rounded-xl border-0 px-1 py-0 text-base leading-6 resize-none focus:outline-none placeholder:text-black text-black"
+                  placeholder="Hi, please check this article for more information https://meelad-quiz.vercel.app/"
+                  defaultValue="Hi, please check this article for more information https://meelad-quiz.vercel.app/"
+                />
+              </div>
+
+              {/* Bottom toolbar */}
+              <div className="mt-3 flex items-center justify-between">
+                <div className="flex items-center gap-3 text-gray-700">
+                  <button className="h-8 w-8 rounded-lg border border-gray-300 grid place-items-center">
+                    <span className="text-base font-semibold">Aa</span>
+                  </button>
+                  <button className="h-8 w-8 rounded-lg text-gray-700 grid place-items-center hover:bg-gray-100">
+                    <Link className="w-5 h-5" />
+                  </button>
+                  <button className="h-8 w-8 rounded-lg text-gray-700 grid place-items-center hover:bg-gray-100">
+                    <Smile className="w-5 h-5" />
+                  </button>
+                  <button className="h-8 w-8 rounded-lg text-gray-700 grid place-items-center hover:bg-gray-100">
+                    <Mic className="w-5 h-5" />
+                  </button>
+                </div>
+                <button className="h-9 w-9 rounded-xl bg-black text-white grid place-items-center">
+                  <Send className="w-5 h-5" />
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Knowledge Base Panel - Exact match */}
-        <div className="hidden xl:flex w-80 bg-white border-l border-gray-200 flex-col">
+        {/* Knowledge Base Panel - refined to match screenshot */}
+        <div className="hidden lg:flex w-[360px] bg-white border-l border-gray-200 flex-col">
           {/* Header */}
-          <div className="p-4 border-b border-gray-200">
-            <div className="text-lg font-semibold text-gray-900 mb-3">Knowledge base</div>
-            <div className="relative">
-              <input 
-                className="w-full h-9 rounded-lg border border-gray-300 pl-9 pr-20 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                placeholder="Server capacity" 
-                defaultValue="Server capacity"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-                <button className="h-7 w-7 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50 transition-colors">
-                  <SlidersHorizontal className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-7 w-7 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50 transition-colors">
-                  <Plus className="w-4 h-4 text-gray-600" />
-                </button>
-                <button className="h-7 w-7 flex items-center justify-center rounded-md border border-gray-300 hover:bg-gray-50 transition-colors">
-                  <Folder className="w-4 h-4 text-gray-600" />
-                </button>
+          <div className="px-5 py-4 border-b border-gray-200">
+            <div className="text-[18px] font-semibold text-gray-900 mb-3">Knowledge base</div>
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <input
+                  className="w-full h-11 rounded-xl border border-gray-300 pl-10 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Server capacity"
+                  defaultValue="Server capacity"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               </div>
+              <button className="h-11 w-11 rounded-xl border border-gray-300 grid place-items-center hover:bg-gray-50">
+                <SlidersHorizontal className="w-5 h-5 text-gray-700" />
+              </button>
+              <button className="h-11 w-11 rounded-xl bg-black text-white grid place-items-center hover:opacity-90">
+                <Plus className="w-5 h-5" />
+              </button>
             </div>
           </div>
-          
+
           {/* Knowledge Base Items */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto px-4">
             {kbItems.map((item, idx) => (
-              <div key={idx} className="px-4 py-4 border-b border-gray-100 flex gap-3 items-start hover:bg-gray-50 transition-colors">
-                <div className="h-10 w-10 rounded-xl bg-pink-100 flex items-center justify-center text-lg">
+              <div key={idx} className="py-4 flex items-start gap-3 border-b border-gray-100">
+                <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-pink-50 to-white border border-pink-200 grid place-items-center text-xl">
                   {item.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sm text-gray-900">{item.title}</div>
-                  <div className="text-xs text-gray-600 mt-1">{item.desc}</div>
-                  <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">{item.type}</span>
-                    <span className="text-xs text-gray-500">Last Edited {item.edited}</span>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="font-semibold text-[15px] text-gray-900 truncate">{item.title}</div>
+                    <button className="h-8 w-8 grid place-items-center rounded-md hover:bg-gray-100">
+                      <MoreHorizontal className="w-4 h-4 text-gray-600" />
+                    </button>
+                  </div>
+                  <div className="text-sm text-gray-600 mt-1 leading-5">{item.desc}</div>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-[11px] px-2 py-1 rounded-md bg-gray-100 text-gray-800">{item.type}</span>
+                    <span className="text-[11px] text-gray-500">Last Edited {item.edited}</span>
                   </div>
                 </div>
-                <button className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors">
-                  <MoreHorizontal className="w-4 h-4 text-gray-600" />
-                </button>
               </div>
             ))}
           </div>
