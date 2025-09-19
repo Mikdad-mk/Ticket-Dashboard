@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   Phone,
@@ -57,6 +57,35 @@ export default function Home() {
   
   // Switch state
   const [isAiReplyEnabled, setIsAiReplyEnabled] = useState(false);
+  
+  // Selected ticket state
+  const [selectedTicket, setSelectedTicket] = useState<string | null>(null);
+  
+  // Initialize selected ticket from URL on page load
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ticketFromUrl = urlParams.get('ticket');
+    if (ticketFromUrl) {
+      setSelectedTicket(ticketFromUrl);
+      setCurrentPage('chat');
+    }
+  }, []);
+
+  // Update browser tab title and URL when ticket is selected
+  useEffect(() => {
+    if (selectedTicket) {
+      const ticketLink = `https://meelad-quiz.vercel.app/?ticket=${selectedTicket}`;
+      document.title = `${selectedTicket} - Ticket Dashboard`;
+      
+      // Update URL without page reload
+      const newUrl = `${window.location.pathname}?ticket=${selectedTicket}`;
+      window.history.pushState({}, '', newUrl);
+    } else {
+      document.title = 'Ticket Dashboard';
+      // Reset URL when no ticket is selected
+      window.history.pushState({}, '', window.location.pathname);
+    }
+  }, [selectedTicket]);
   const tickets = [
     { id: "#TC-0004", name: "David Newman", desc: "System Login Failure", time: "10:06 am", unread: 2 },
     { id: "#TC-0001", name: "Emily Johnson", desc: "Request for Additional Storage and mor...", time: "09:46 am", unread: 0, selected: true },
@@ -220,8 +249,10 @@ export default function Home() {
                 <ArrowLeft className="h-3 w-3 min-[375px]:h-3.5 min-[375px]:w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               <div className="flex flex-col min-w-0 flex-1">
-                <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-xs sm:text-sm md:text-sm lg:text-base truncate">#TC-0001</h1>
-                <p className="text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate" title="Request for Additional Storage and more server">Request for Additional Storage and more server</p>
+                <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-xs sm:text-sm md:text-sm lg:text-base truncate">{selectedTicket || '#TC-0001'}</h1>
+                <p className="text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate" title="Request for Additional Storage and more server">
+                  {selectedTicket ? tickets.find(t => t.id === selectedTicket)?.desc || 'Request for Additional Storage and more server' : 'Request for Additional Storage and more server'}
+                </p>
               </div>
             </div>
             
@@ -281,7 +312,10 @@ export default function Home() {
                 {tickets.slice(0, visibleTickets).map((ticket, idx) => (
                   <div 
                     key={idx} 
-                    onClick={() => setCurrentPage('chat')}
+                    onClick={() => {
+                      setSelectedTicket(ticket.id);
+                      setCurrentPage('chat');
+                    }}
                     className={`px-2 min-[375px]:px-2.5 sm:px-2 md:px-4 py-2 min-[375px]:py-2.5 sm:py-2 md:py-3 flex items-start gap-2 min-[375px]:gap-2.5 sm:gap-2 md:gap-3 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer ${
                       ticket.selected ? 'bg-gray-50' : ''
                     }`}
@@ -405,10 +439,10 @@ export default function Home() {
 
               {/* Message field */}
               <div className="mb-0.5 min-[375px]:mb-1 sm:mb-2 md:mb-1.5 lg:mb-1">
-                <textarea 
+                <textarea
                   className="w-full min-h-[20px] min-[375px]:min-h-[24px] sm:min-h-[28px] md:min-h-[24px] lg:min-h-[24px] rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl border-0 px-0.5 min-[375px]:px-0.5 sm:px-1 md:px-1 py-0.5 min-[375px]:py-0.5 sm:py-1 md:py-1 lg:py-1 text-[8px] min-[375px]:text-[9px] sm:text-[10px] md:text-sm lg:text-sm leading-tight min-[375px]:leading-tight sm:leading-tight md:leading-4 lg:leading-4 resize-none focus:outline-none placeholder:text-gray-500 text-black"
-                  placeholder="HI, please check this article for more information https://meelad-quiz.vercel.app/"
-                  defaultValue="HI, please check this article for more information https://meelad-quiz.vercel.app/"
+                  placeholder={`HI, please check this article for more information https://meelad-quiz.vercel.app/?ticket=${selectedTicket || 'TC-0001'}`}
+                  defaultValue={`HI, please check this article for more information https://meelad-quiz.vercel.app/?ticket=${selectedTicket || 'TC-0001'}`}
                 />
               </div>
 
