@@ -189,7 +189,7 @@ export default function Home() {
               </div>
 
           {/* Highlighted Support Icon */}
-          <button className="w-7 h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
+          <button className="w-7 h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 bg-white   flex items-center justify-center hover:bg-gray-50 transition-colors">
             <Headphones className="w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5 text-gray-600" />
           </button>
 
@@ -241,9 +241,8 @@ export default function Home() {
                 <Clock className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">Snooze</span>
               </button>
-              <button className="hidden sm:flex h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-8 sm:px-2 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors">
+              <button className="hidden sm:flex h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-8 sm:px-2 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors items-center justify-center">
                 <span className="hidden sm:inline">Close</span>
-                <X className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-3 md:w-3 md:hidden" />
               </button>
             </div>
           </div>
@@ -253,7 +252,7 @@ export default function Home() {
             {/* Mobile: Show only current page, Desktop: Show all panels */}
             
             {/* Ticket List Panel - Hidden on mobile unless selected */}
-            <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} lg:flex w-full lg:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col min-h-0 h-full`}>
+            <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} lg:flex min-[1300px]:flex w-full lg:w-72 xl:w-80 min-[1300px]:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col min-h-0 h-full`}>
               {/* Header - Mobile Responsive */}
               <div className="px-2 min-[375px]:px-3 sm:px-4 md:px-4 py-2 min-[375px]:py-2.5 sm:py-3 border-b border-gray-200 flex items-center justify-between flex-shrink-0 bg-white">
                 <span className="text-xs min-[375px]:text-sm sm:text-sm font-medium text-gray-900">Total ticket 24</span>
@@ -318,7 +317,7 @@ export default function Home() {
             </div>
 
         {/* Chat Panel - Mobile First */}
-        <div className={`${currentPage === 'chat' ? 'flex' : 'hidden'} lg:flex flex-1 bg-gray-50 flex-col relative min-h-0`}>
+        <div className={`${currentPage === 'chat' ? 'flex' : 'hidden'} min-[1300px]:flex flex-1 bg-gray-50 flex-col relative min-h-0`}>
           {/* Chat Messages - Ultra Mobile Scrollable area */}
           <div className="flex-1 overflow-y-auto p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 space-y-2 min-[375px]:space-y-2.5 sm:space-y-3 md:space-y-4 pb-16 min-[375px]:pb-20 sm:pb-24 md:pb-32 scrollbar-hide [padding-bottom:calc(theme(spacing.16)+env(safe-area-inset-bottom))]">
             {messages.map((message, idx) => {
@@ -367,14 +366,14 @@ export default function Home() {
           </div>
 
           {/* Chat Input - Ultra Mobile fixed at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 [padding-bottom:env(safe-area-inset-bottom)]">
+          <div className="absolute bottom-0 left-0 right-0 p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 [padding-bottom:env(safe-area-inset-bottom)]">
             <div className="rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 p-1 min-[375px]:p-1.5 sm:p-1.5 md:p-2 lg:p-4 relative">
               {/* Top controls */}
               <div className="flex items-center justify-between mb-1 min-[375px]:mb-1.5 sm:mb-2 md:mb-3">
                 <div className="flex items-center gap-1 min-[375px]:gap-1 sm:gap-2 md:gap-3">
                   <button className="h-5 min-[375px]:h-6 sm:h-6 md:h-7 lg:h-8 px-1 min-[375px]:px-1.5 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
                     <FaWhatsapp className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-green-500" />
-                    <span className="font-medium text-[9px] min-[375px]:text-[10px] sm:text-[10px] md:text-xs lg:text-sm">Whatsapp</span>
+                    <span className="font-medium text-[9px] min-[375px]:text-[10px] sm:text-[10px] md:text-xs lg:text-sm text-black">Whatsapp</span>
                     <ChevronDown className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-gray-500" />
                   </button>
                   <div className="flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2 text-gray-500">
@@ -433,14 +432,14 @@ export default function Home() {
         </div>
 
         {/* Knowledge Base Panel - Mobile First */}
-        <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} xl:flex w-full xl:w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col min-h-0 h-full`}>
+        <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} xl:flex min-[1300px]:flex w-full xl:w-80 2xl:w-[360px] min-[1300px]:w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col min-h-0 h-full`}>
           {/* Header */}
           <div className="px-3 xl:px-4 2xl:px-5 py-3 xl:py-3 2xl:py-4 border-b border-gray-200 flex-shrink-0 bg-white">
             <div className="text-sm xl:text-base 2xl:text-[18px] font-semibold text-gray-900 mb-2 xl:mb-3">Knowledge base</div>
             <div className="flex items-center gap-1.5 xl:gap-2">
               <div className="relative flex-1">
                 <input
-                  className="w-full h-8 xl:h-9 2xl:h-11 rounded-md xl:rounded-lg 2xl:rounded-xl border border-gray-300 pl-6 xl:pl-8 2xl:pl-10 pr-2 xl:pr-3 text-xs xl:text-xs 2xl:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full h-8 xl:h-9 2xl:h-11 rounded-md xl:rounded-lg 2xl:rounded-xl border border-gray-300 pl-6 xl:pl-8 2xl:pl-10 pr-2 xl:pr-3 text-xs xl:text-xs 2xl:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
                   placeholder="Server capacity"
                   defaultValue="Server capacity"
                 />
