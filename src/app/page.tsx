@@ -48,7 +48,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
   // Mobile navigation state
-  const [currentPage, setCurrentPage] = useState<'chat' | 'tickets' | 'knowledge'>('chat');
+  const [currentPage, setCurrentPage] = useState<'chat' | 'tickets' | 'knowledge'>('tickets');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const tickets = [
     { id: "#TC-0004", name: "David Newman", desc: "System Login Failure", time: "10:06 am", unread: 2 },
@@ -84,13 +84,13 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-[100dvh] bg-gray-100">
       {/* Main Layout Container - Responsive */}
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex h-[100dvh] overflow-hidden">
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setShowMobileMenu(!showMobileMenu)}
-          className="lg:hidden fixed top-4 left-4 z-50 h-10 w-10 bg-white border border-gray-300 rounded-lg flex items-center justify-center shadow-lg"
+          className="hidden"
         >
           <Menu className="w-5 h-5 text-gray-600" />
         </button>
@@ -206,67 +206,67 @@ export default function Home() {
         {/* Main Content Area with Integrated Header */}
         <div className="flex-1 flex flex-col">
           {/* Header Bar - Ultra Mobile Responsive */}
-          <div className="flex items-center justify-between px-1 min-[375px]:px-2 sm:px-4 md:px-6 py-1 min-[375px]:py-1.5 sm:py-2 md:py-3 lg:py-4 bg-white border-b border-gray-200">
+          <div className="flex items-center justify-between px-1.5 min-[375px]:px-2.5 sm:px-4 md:px-6 py-2 min-[375px]:py-2.5 sm:py-3 md:py-4 lg:py-4 bg-white border-b border-gray-200">
             {/* Left Section */}
-            <div className="flex items-center gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-4 min-w-0 flex-1">
-              <button className="h-4 w-4 min-[375px]:h-5 min-[375px]:w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
-                <ArrowLeft className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
+            <div className="flex items-center gap-1 min-[375px]:gap-1.5 sm:gap-2 md:gap-4 min-w-0 flex-1">
+              <button onClick={() => setCurrentPage('tickets')} className="h-6 w-6 min-[375px]:h-7 min-[375px]:w-7 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
+                <ArrowLeft className="h-3 w-3 min-[375px]:h-3.5 min-[375px]:w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               <div className="flex flex-col min-w-0 flex-1">
-                <h1 className="font-bold text-gray-900 text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm lg:text-base truncate">#TC-0001</h1>
-                <p className="text-[8px] min-[375px]:text-[9px] sm:text-xs md:text-sm text-gray-500 truncate">Request for Additional Storage and more server</p>
+                <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-[11px] sm:text-sm md:text-sm lg:text-base truncate">#TC-0001</h1>
+                <p className="text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate">Request for Additional Storage and more server</p>
               </div>
             </div>
             
-            {/* Right Section - Ultra Mobile Actions */}
-            <div className="flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2 flex-shrink-0">
+            {/* Right Section - Actions */}
+            <div className="flex items-center gap-1 min-[375px]:gap-1 sm:gap-1.5 md:gap-2 flex-shrink-0">
               {/* Icon Buttons */}
-              <button className="h-4 w-4 min-[375px]:h-5 min-[375px]:w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <Star className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
+              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <Star className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
               </button>
-              <button className="h-4 w-4 min-[375px]:h-5 min-[375px]:w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <MoreHorizontal className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
+              <button className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 rounded-sm min-[375px]:rounded-md border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <MoreHorizontal className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               
-              {/* Action Buttons - Ultra Mobile */}
-              <button className="h-4 px-0.5 min-[375px]:h-5 min-[375px]:px-1 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[8px] min-[375px]:text-[9px] sm:text-xs md:text-sm flex items-center gap-0 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
-                <Phone className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
+              {/* Action Buttons */}
+              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
+                <Phone className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">Call</span>
               </button>
-              <button className="h-4 px-0.5 min-[375px]:h-5 min-[375px]:px-1 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[8px] min-[375px]:text-[9px] sm:text-xs md:text-sm flex items-center gap-0 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
-                <Clock className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
+              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md border border-gray-300 text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm flex items-center gap-0.5 sm:gap-0.5 md:gap-1 lg:gap-2 hover:bg-gray-50 text-black transition-colors">
+                <Clock className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:h-3 md:w-3 lg:h-4 lg:w-4" />
                 <span className="hidden sm:inline">Snooze</span>
               </button>
-              <button className="h-4 px-0.5 min-[375px]:h-5 min-[375px]:px-1 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[8px] min-[375px]:text-[9px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors">
+              <button className="h-5 px-1 min-[375px]:h-6 min-[375px]:px-1.5 sm:h-6 sm:px-1.5 md:h-7 md:px-2 lg:h-8 lg:px-3 rounded-sm min-[375px]:rounded-md bg-orange-500 text-white text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm hover:bg-orange-600 transition-colors">
                 <span className="hidden sm:inline">Close</span>
-                <X className="h-2 w-2 min-[375px]:h-2.5 min-[375px]:w-2.5 sm:h-3 sm:w-3 md:hidden" />
+                <X className="h-3 w-3 min-[375px]:h-3 min-[375px]:w-3 sm:h-3 sm:w-3 md:hidden" />
               </button>
             </div>
           </div>
 
           {/* Content Area - Mobile First */}
-          <div className="flex flex-1 overflow-hidden">
+          <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
             {/* Mobile: Show only current page, Desktop: Show all panels */}
             
             {/* Ticket List Panel - Hidden on mobile unless selected */}
-            <div className={`${currentPage === 'tickets' ? 'flex' : 'hidden'} lg:flex w-40 min-[375px]:w-44 min-[425px]:w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col`}>
-              {/* Header - Ultra Mobile */}
-              <div className="px-1 min-[375px]:px-2 sm:px-3 md:px-4 py-1.5 min-[375px]:py-2 sm:py-3 border-b border-gray-200 flex items-center justify-between">
-                <span className="text-[10px] min-[375px]:text-xs sm:text-sm font-medium text-gray-900">Total ticket 24</span>
-                <button className="h-5 min-[375px]:h-6 sm:h-7 md:h-8 px-0.5 min-[375px]:px-1 sm:px-2 md:px-3 rounded-lg border border-gray-300 text-[9px] min-[375px]:text-xs sm:text-sm hover:bg-gray-50 transition-colors flex items-center gap-0.5 min-[375px]:gap-1 text-black">
+            <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} lg:flex w-full lg:w-72 xl:w-80 bg-white border-r border-gray-200 flex-col`}>
+              {/* Header - Mobile Responsive */}
+              <div className="px-2 min-[375px]:px-3 sm:px-4 md:px-4 py-2 min-[375px]:py-2.5 sm:py-3 border-b border-gray-200 flex items-center justify-between">
+                <span className="text-xs min-[375px]:text-sm sm:text-sm font-medium text-gray-900">Total ticket 24</span>
+                <button className="h-6 min-[375px]:h-7 sm:h-7 md:h-8 px-1.5 min-[375px]:px-2 sm:px-2 md:px-3 rounded-lg border border-gray-300 text-xs min-[375px]:text-sm sm:text-sm hover:bg-gray-50 transition-colors flex items-center gap-1 min-[375px]:gap-1 text-black">
                   <span>Newest</span>
                   <ChevronDown className="w-2.5 h-2.5 min-[375px]:w-3 min-[375px]:h-3 sm:w-4 sm:h-4 text-gray-500" />
-          </button>
+                </button>
             </div>
               
-              {/* Search - Ultra Mobile */}
-              <div className="p-0.5 min-[375px]:p-1 sm:p-2 md:p-3">
+              {/* Search - Mobile Responsive */}
+              <div className="p-2 min-[375px]:p-2.5 sm:p-2 md:p-3">
             <div className="relative">
                   <input 
-                    className="w-full h-6 min-[375px]:h-7 sm:h-8 md:h-10 rounded-md min-[375px]:rounded-lg border border-gray-300 pl-4 min-[375px]:pl-6 sm:pl-8 md:pl-9 pr-1.5 min-[375px]:pr-2 sm:pr-3 text-[10px] min-[375px]:text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black" 
+                    className="w-full h-7 min-[375px]:h-8 sm:h-8 md:h-10 rounded-md min-[375px]:rounded-lg border border-gray-300 pl-6 min-[375px]:pl-7 sm:pl-8 md:pl-9 pr-2 min-[375px]:pr-2.5 sm:pr-3 text-xs min-[375px]:text-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-black" 
                     placeholder="Search" 
                   />
-                  <Search className="absolute left-1 min-[375px]:left-1.5 sm:left-2 md:left-3 top-1/2 transform -translate-y-1/2 w-2.5 h-2.5 min-[375px]:w-3 min-[375px]:h-3 sm:w-4 sm:h-4 text-gray-400" />
+                  <Search className="absolute left-2 min-[375px]:left-2.5 sm:left-2 md:left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 min-[375px]:w-3.5 min-[375px]:h-3.5 sm:w-4 sm:h-4 text-gray-400" />
                 </div>
               </div>
               
@@ -275,22 +275,23 @@ export default function Home() {
                 {tickets.map((ticket, idx) => (
                   <div 
                     key={idx} 
-                    className={`px-0.5 min-[375px]:px-1 sm:px-2 md:px-4 py-1 min-[375px]:py-1.5 sm:py-2 md:py-3 flex items-start gap-1 min-[375px]:gap-1.5 sm:gap-2 md:gap-3 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer ${
+                    onClick={() => setCurrentPage('chat')}
+                    className={`px-2 min-[375px]:px-2.5 sm:px-2 md:px-4 py-2 min-[375px]:py-2.5 sm:py-2 md:py-3 flex items-start gap-2 min-[375px]:gap-2.5 sm:gap-2 md:gap-3 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer ${
                       ticket.selected ? 'bg-gray-50' : ''
                     }`}
                   >
-                    <div className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-7 sm:w-7 md:h-9 md:w-9 rounded-md min-[375px]:rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <Ticket className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-gray-500" />
+                    <div className="h-6 w-6 min-[375px]:h-7 min-[375px]:w-7 sm:h-7 sm:w-7 md:h-9 md:w-9 rounded-md min-[375px]:rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <Ticket className="w-3 h-3 min-[375px]:w-3.5 min-[375px]:h-3.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-gray-500" />
               </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[9px] min-[375px]:text-[10px] sm:text-xs text-gray-500 truncate">{ticket.id}</div>
-                      <div className="text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm font-medium text-gray-900 truncate">{ticket.name}</div>
-                      <div className="text-[8px] min-[375px]:text-[9px] sm:text-xs text-gray-500 truncate">{ticket.desc}</div>
+                      <div className="text-xs min-[375px]:text-sm sm:text-xs text-gray-500 truncate">{ticket.id}</div>
+                      <div className="text-xs min-[375px]:text-sm sm:text-xs md:text-sm font-medium text-gray-900 truncate">{ticket.name}</div>
+                      <div className="text-xs min-[375px]:text-sm sm:text-xs text-gray-500 truncate">{ticket.desc}</div>
                 </div>
                     <div className="text-[8px] min-[375px]:text-[9px] sm:text-xs text-gray-500 flex flex-col items-end gap-0.5 min-[375px]:gap-0.5 sm:gap-1 flex-shrink-0">
                       <div className="whitespace-nowrap">{ticket.time}</div>
                       {ticket.unread > 0 && (
-                        <span className="inline-flex h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 rounded-full bg-red-500 text-white text-[7px] min-[375px]:text-[8px] sm:text-xs items-center justify-center">
+                        <span className="inline-flex h-3 w-3 min-[375px]:h-3.5 min-[375px]:w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 rounded-full bg-red-500 text-white text-[8px] min-[375px]:text-[9px] sm:text-xs items-center justify-center">
                           {ticket.unread}
                         </span>
                       )}
@@ -303,13 +304,13 @@ export default function Home() {
         {/* Chat Panel - Mobile First */}
         <div className={`${currentPage === 'chat' ? 'flex' : 'hidden'} lg:flex flex-1 bg-gray-50 flex-col relative`}>
           {/* Chat Messages - Ultra Mobile Scrollable area */}
-          <div className="flex-1 overflow-y-auto p-0.5 min-[375px]:p-1 sm:p-2 md:p-4 space-y-1.5 min-[375px]:space-y-2 sm:space-y-3 md:space-y-4 pb-16 min-[375px]:pb-20 sm:pb-24 md:pb-32 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 space-y-2 min-[375px]:space-y-2.5 sm:space-y-3 md:space-y-4 pb-16 min-[375px]:pb-20 sm:pb-24 md:pb-32 scrollbar-hide [padding-bottom:calc(theme(spacing.16)+env(safe-area-inset-bottom))]">
             {messages.map((message, idx) => {
               const isAgent = message.from === 'agent';
               const isCustomer = message.from === 'customer';
 
               return (
-                <div key={idx} className={`flex items-start gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-3 ${
+                <div key={idx} className={`flex w-full items-start gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-3 ${
                   isAgent ? 'justify-end' : 'justify-start'
                 }`}>
                   {/* Avatar */}
@@ -324,7 +325,7 @@ export default function Home() {
                   </div>
 
                   {/* Message Content */}
-                  <div className={`max-w-[160px] min-[375px]:max-w-[200px] sm:max-w-[280px] md:max-w-xs ${
+                  <div className={`max-w-[85%] sm:max-w-[75%] md:max-w-[65%] lg:max-w-[60%] xl:max-w-[55%] ${
                     isAgent ? 'order-1' : 'order-2'
                   }`}>
                     {/* Message Bubble */}
@@ -333,11 +334,11 @@ export default function Home() {
                         ? 'bg-blue-100 text-gray-900' 
                         : 'bg-white text-gray-900 border border-gray-200'
                     }`}>
-                      <div className="text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm leading-tight min-[375px]:leading-tight sm:leading-normal md:leading-normal">{message.text}</div>
+                      <div className="text-[9px] min-[375px]:text-[10px] sm:text-xs md:text-sm leading-tight min-[375px]:leading-tight sm:leading-normal md:leading-normal break-words whitespace-pre-wrap">{message.text}</div>
                     </div>
 
                     {/* Time and Channel */}
-                    <div className="flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 text-[8px] min-[375px]:text-[9px] sm:text-xs text-gray-500">
+                    <div className={`flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 text-[8px] min-[375px]:text-[9px] sm:text-xs text-gray-500 ${isAgent ? 'justify-end text-right' : 'justify-start text-left'}` }>
                       <span>{message.time}</span>
                       <span>via</span>
                       <FaWhatsapp className="w-1 h-1 min-[375px]:w-1.5 min-[375px]:h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 text-green-500" />
@@ -350,21 +351,21 @@ export default function Home() {
           </div>
 
           {/* Chat Input - Ultra Mobile fixed at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 p-0.5 min-[375px]:p-1 sm:p-2 md:p-4">
-            <div className="rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 p-0.5 min-[375px]:p-1 sm:p-1.5 md:p-2 lg:p-4 relative">
+          <div className="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 [padding-bottom:env(safe-area-inset-bottom)]">
+            <div className="rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 p-1 min-[375px]:p-1.5 sm:p-1.5 md:p-2 lg:p-4 relative">
               {/* Top controls */}
-              <div className="flex items-center justify-between mb-0.5 min-[375px]:mb-1 sm:mb-2 md:mb-3">
-                <div className="flex items-center gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-3">
-                  <button className="h-4 min-[375px]:h-5 sm:h-6 md:h-7 lg:h-8 px-0.5 min-[375px]:px-1 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
-                    <FaWhatsapp className="w-1.5 h-1.5 min-[375px]:w-2 min-[375px]:h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-green-500" />
-                    <span className="font-medium text-[8px] min-[375px]:text-[9px] sm:text-[10px] md:text-xs lg:text-sm">Whatsapp</span>
-                    <ChevronDown className="w-1.5 h-1.5 min-[375px]:w-2 min-[375px]:h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-gray-500" />
+              <div className="flex items-center justify-between mb-1 min-[375px]:mb-1.5 sm:mb-2 md:mb-3">
+                <div className="flex items-center gap-1 min-[375px]:gap-1 sm:gap-2 md:gap-3">
+                  <button className="h-5 min-[375px]:h-6 sm:h-6 md:h-7 lg:h-8 px-1 min-[375px]:px-1.5 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
+                    <FaWhatsapp className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-green-500" />
+                    <span className="font-medium text-[9px] min-[375px]:text-[10px] sm:text-[10px] md:text-xs lg:text-sm">Whatsapp</span>
+                    <ChevronDown className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-gray-500" />
                   </button>
                   <div className="flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2 text-gray-500">
-                    <span className="text-[7px] min-[375px]:text-[8px] sm:text-[9px] md:text-xs lg:text-sm">from</span>
-                    <button className="h-4 min-[375px]:h-5 sm:h-6 md:h-7 lg:h-8 px-0.5 min-[375px]:px-1 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
-                      <span className="font-semibold text-[8px] min-[375px]:text-[9px] sm:text-[10px] md:text-xs lg:text-sm">CSFILK</span>
-                      <ChevronDown className="w-1.5 h-1.5 min-[375px]:w-2 min-[375px]:h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-gray-500" />
+                    <span className="text-[8px] min-[375px]:text-[9px] sm:text-[9px] md:text-xs lg:text-sm">from</span>
+                    <button className="h-5 min-[375px]:h-6 sm:h-6 md:h-7 lg:h-8 px-1 min-[375px]:px-1.5 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
+                      <span className="font-semibold text-[9px] min-[375px]:text-[10px] sm:text-[10px] md:text-xs lg:text-sm">CSFILK</span>
+                      <ChevronDown className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-gray-500" />
                     </button>
                   </div>
                 </div>
@@ -416,14 +417,14 @@ export default function Home() {
         </div>
 
         {/* Knowledge Base Panel - Mobile First */}
-        <div className={`${currentPage === 'knowledge' ? 'flex' : 'hidden'} xl:flex w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col`}>
+        <div className={`${currentPage === 'chat' ? 'hidden' : 'flex'} xl:flex w-full xl:w-80 2xl:w-[360px] bg-white border-l border-gray-200 flex-col`}>
           {/* Header */}
-          <div className="px-3 xl:px-4 2xl:px-5 py-2 xl:py-3 2xl:py-4 border-b border-gray-200">
+          <div className="px-3 xl:px-4 2xl:px-5 py-3 xl:py-3 2xl:py-4 border-b border-gray-200">
             <div className="text-sm xl:text-base 2xl:text-[18px] font-semibold text-gray-900 mb-2 xl:mb-3">Knowledge base</div>
-            <div className="flex items-center gap-1 xl:gap-2">
+            <div className="flex items-center gap-1.5 xl:gap-2">
               <div className="relative flex-1">
                 <input
-                  className="w-full h-8 xl:h-9 2xl:h-11 rounded-md xl:rounded-lg 2xl:rounded-xl border border-gray-300 pl-6 xl:pl-8 2xl:pl-10 pr-2 xl:pr-3 text-[10px] xl:text-xs 2xl:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full h-8 xl:h-9 2xl:h-11 rounded-md xl:rounded-lg 2xl:rounded-xl border border-gray-300 pl-6 xl:pl-8 2xl:pl-10 pr-2 xl:pr-3 text-xs xl:text-xs 2xl:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Server capacity"
                   defaultValue="Server capacity"
                 />
@@ -439,9 +440,9 @@ export default function Home() {
           </div>
 
           {/* Knowledge Base Items */}
-          <div className="flex-1 overflow-y-auto px-2 xl:px-3 2xl:px-4 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto px-3 xl:px-3 2xl:px-4 scrollbar-hide">
             {kbItems.map((item, idx) => (
-              <div key={idx} className="py-2 xl:py-3 2xl:py-4 flex items-start gap-1.5 xl:gap-2 2xl:gap-3 border-b border-gray-100">
+              <div key={idx} className="py-3 xl:py-3 2xl:py-4 flex items-start gap-2 xl:gap-2 2xl:gap-3 border-b border-gray-100">
                 <div className="h-8 w-8 xl:h-10 xl:w-10 2xl:h-12 2xl:w-12 rounded-lg xl:rounded-xl 2xl:rounded-2xl bg-gradient-to-br from-pink-50 to-white border border-pink-200 grid place-items-center text-sm xl:text-lg 2xl:text-xl flex-shrink-0">
                   {item.icon}
                 </div>
@@ -452,7 +453,7 @@ export default function Home() {
                       <MoreHorizontal className="w-2.5 h-2.5 xl:w-3 xl:h-3 2xl:w-4 2xl:h-4 text-gray-600" />
                     </button>
                   </div>
-                  <div className="text-[9px] xl:text-xs 2xl:text-sm text-gray-600 mt-0.5 xl:mt-1 leading-tight xl:leading-4 2xl:leading-5">{item.desc}</div>
+                  <div className="text-xs xl:text-xs 2xl:text-sm text-gray-600 mt-1 xl:mt-1 leading-tight xl:leading-4 2xl:leading-5">{item.desc}</div>
                   <div className="flex items-center gap-1 xl:gap-2 2xl:gap-3 mt-1 xl:mt-2">
                     <span className="text-[8px] xl:text-[10px] 2xl:text-[11px] px-1 xl:px-1.5 2xl:px-2 py-0.5 xl:py-0.5 2xl:py-1 rounded-md bg-gray-100 text-gray-800">{item.type}</span>
                     <span className="text-[8px] xl:text-[10px] 2xl:text-[11px] text-gray-500">Last Edited {item.edited}</span>

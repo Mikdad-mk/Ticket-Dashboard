@@ -71,14 +71,9 @@ body {
   .mobile-gap-2 { gap: 0.5rem; }
 }
 
-/* Touch-friendly interactions */
+/* Touch-friendly interactions (opt-in) */
 @media (hover: none) and (pointer: coarse) {
-  /* Touch device styles */
-  button, [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
+  /* Only apply to elements explicitly marked as touch targets */
   .touch-target {
     min-height: 44px;
     min-width: 44px;
