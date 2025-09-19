@@ -54,6 +54,9 @@ export default function Home() {
   // Pagination state
   const [visibleTickets, setVisibleTickets] = useState(5);
   const [visibleKbItems, setVisibleKbItems] = useState(5);
+  
+  // Switch state
+  const [isAiReplyEnabled, setIsAiReplyEnabled] = useState(false);
   const tickets = [
     { id: "#TC-0004", name: "David Newman", desc: "System Login Failure", time: "10:06 am", unread: 2 },
     { id: "#TC-0001", name: "Emily Johnson", desc: "Request for Additional Storage and mor...", time: "09:46 am", unread: 0, selected: true },
@@ -213,12 +216,12 @@ export default function Home() {
           <div className="flex items-center justify-between px-1 min-[375px]:px-1.5 sm:px-4 md:px-6 py-3 min-[375px]:py-4 sm:py-5 md:py-4 lg:py-4 bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-20">
             {/* Left Section */}
             <div className="flex items-center gap-0.5 min-[375px]:gap-1 sm:gap-2 md:gap-4 min-w-0 flex-1">
-              <button onClick={() => setCurrentPage('tickets')} className="h-5 w-5 min-[375px]:h-6 min-[375px]:w-6 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
-                <ArrowLeft className="h-2.5 w-2.5 min-[375px]:h-3 min-[375px]:w-3 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
+              <button onClick={() => setCurrentPage('tickets')} className="h-6 w-6 min-[375px]:h-7 min-[375px]:w-7 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0">
+                <ArrowLeft className="h-3 w-3 min-[375px]:h-3.5 min-[375px]:w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 lg:h-4 lg:w-4 text-gray-600" />
               </button>
               <div className="flex flex-col min-w-0 flex-1">
                 <h1 className="font-bold text-gray-900 text-[10px] min-[375px]:text-xs sm:text-sm md:text-sm lg:text-base truncate">#TC-0001</h1>
-                <p className="text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate">Request for Additional Storage and more server</p>
+                <p className="text-[8px] min-[375px]:text-[10px] sm:text-xs md:text-sm text-gray-500 truncate" title="Request for Additional Storage and more server">Request for Additional Storage and more server</p>
               </div>
             </div>
             
@@ -366,10 +369,10 @@ export default function Home() {
           </div>
 
           {/* Chat Input - Ultra Mobile fixed at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-1 min-[375px]:p-1.5 sm:p-2 md:p-4 [padding-bottom:env(safe-area-inset-bottom)]">
-            <div className="rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 p-1 min-[375px]:p-1.5 sm:p-1.5 md:p-2 lg:p-4 relative">
+          <div className="absolute bottom-0 left-0 right-0 p-1 min-[375px]:p-1.5 sm:p-2 md:p-2 lg:p-2 [padding-bottom:env(safe-area-inset-bottom)]">
+            <div className="rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 p-1 min-[375px]:p-1.5 sm:p-1.5 md:p-1.5 lg:p-2 relative">
               {/* Top controls */}
-              <div className="flex items-center justify-between mb-1 min-[375px]:mb-1.5 sm:mb-2 md:mb-3">
+              <div className="flex items-center justify-between mb-1 min-[375px]:mb-1.5 sm:mb-2 md:mb-1.5 lg:mb-1">
                 <div className="flex items-center gap-1 min-[375px]:gap-1 sm:gap-2 md:gap-3">
                   <button className="h-5 min-[375px]:h-6 sm:h-6 md:h-7 lg:h-8 px-1 min-[375px]:px-1.5 sm:px-1.5 md:px-2 lg:px-3 rounded-sm min-[375px]:rounded-md sm:rounded-lg border border-gray-300 flex items-center gap-0.5 min-[375px]:gap-0.5 sm:gap-1 md:gap-2">
                     <FaWhatsapp className="w-2 h-2 min-[375px]:w-2.5 min-[375px]:h-2.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 text-green-500" />
@@ -387,18 +390,23 @@ export default function Home() {
                 <div className="hidden sm:flex items-center gap-2 text-sm text-gray-800">
                   <span>instant reply with AI</span>
                 <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" className="sr-only peer" />
-                    <div className="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-black transition-colors">
-                      <span className="absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-white peer-checked:left-5 transition-all"></span>
+                    <input 
+                      type="checkbox" 
+                      className="sr-only peer" 
+                      checked={isAiReplyEnabled}
+                      onChange={() => setIsAiReplyEnabled(!isAiReplyEnabled)}
+                    />
+                    <div className={`w-10 h-5 rounded-full transition-colors ${isAiReplyEnabled ? 'bg-black' : 'bg-gray-300'}`}>
+                      <span className={`absolute top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-white transition-all ${isAiReplyEnabled ? 'left-5' : 'left-0.5'}`}></span>
                   </div>
                 </label>
               </div>
             </div>
 
               {/* Message field */}
-              <div className="mb-0.5 min-[375px]:mb-1 sm:mb-2 md:mb-3">
+              <div className="mb-0.5 min-[375px]:mb-1 sm:mb-2 md:mb-1.5 lg:mb-1">
                 <textarea 
-                  className="w-full min-h-[20px] min-[375px]:min-h-[24px] sm:min-h-[28px] md:min-h-[32px] lg:min-h-[40px] rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl border-0 px-0.5 min-[375px]:px-0.5 sm:px-1 md:px-1 py-0.5 min-[375px]:py-0.5 sm:py-1 md:py-2 text-[8px] min-[375px]:text-[9px] sm:text-[10px] md:text-sm lg:text-base leading-tight min-[375px]:leading-tight sm:leading-tight md:leading-5 lg:leading-6 resize-none focus:outline-none placeholder:text-gray-500 text-black"
+                  className="w-full min-h-[20px] min-[375px]:min-h-[24px] sm:min-h-[28px] md:min-h-[24px] lg:min-h-[24px] rounded-sm min-[375px]:rounded-md sm:rounded-lg md:rounded-xl border-0 px-0.5 min-[375px]:px-0.5 sm:px-1 md:px-1 py-0.5 min-[375px]:py-0.5 sm:py-1 md:py-1 lg:py-1 text-[8px] min-[375px]:text-[9px] sm:text-[10px] md:text-sm lg:text-sm leading-tight min-[375px]:leading-tight sm:leading-tight md:leading-4 lg:leading-4 resize-none focus:outline-none placeholder:text-gray-500 text-black"
                   placeholder="HI, please check this article for more information https://meelad-quiz.vercel.app/"
                   defaultValue="HI, please check this article for more information https://meelad-quiz.vercel.app/"
                 />
